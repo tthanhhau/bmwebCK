@@ -29,14 +29,16 @@
                 <div class="mb-4">
                     <label for="firstName" class="block text-gray-700 font-semibold text-sm mb-2">First Name</label>
                     <input type="text" id="firstName" name="firstName" placeholder="Enter your first name"
-                           class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                           class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                           required maxlength="50">
                 </div>
 
                 <!-- Last Name -->
                 <div class="mb-4">
                     <label for="lastName" class="block text-gray-700 font-semibold text-sm mb-2">Last Name</label>
                     <input type="text" id="lastName" name="lastName" placeholder="Enter your last name"
-                           class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                           class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                           required maxlength="50">
                 </div>
 
                 <!-- Email -->
@@ -110,6 +112,27 @@ function validateForm() {
     }
     return true;
 }
+
+// Thêm hàm xử lý giới hạn ký tự
+function limitInputLength(input) {
+    if (input.value.length > 50) {
+        input.value = input.value.slice(0, 50);
+    }
+}
+
+// Thêm event listeners cho các trường input
+document.addEventListener('DOMContentLoaded', function() {
+    const firstNameInput = document.getElementById('firstName');
+    const lastNameInput = document.getElementById('lastName');
+    
+    firstNameInput.addEventListener('input', function() {
+        limitInputLength(this);
+    });
+    
+    lastNameInput.addEventListener('input', function() {
+        limitInputLength(this);
+    });
+});
 </script>
 
 </body>
